@@ -1,0 +1,68 @@
+(base) vika@vika-IdeaPad-U330p:~/GB/course_mysql/les_2$ mysql -u root -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 30
+Server version: 8.0.27-0ubuntu0.20.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2021, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> SHOW DATABASES
+    -> ;
++--------------------+
+| Database           |
++--------------------+
+| examples           |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sample             |
+| sys                |
++--------------------+
+6 rows in set (0,03 sec)
+
+mysql> USE examples
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> CREATE TABLE users ( id SERIAL, name VARCHAR(225) NOT NULL UNIQUE );
+ERROR 1050 (42S01): Table 'users' already exists
+mysql> CREATE DATABASE sample;
+ERROR 1007 (HY000): Can't create database 'sample'; database exists 
+(base) vika@vika-IdeaPad-U330p:~/GB/course_mysql/les_2$ cd
+(base) vika@vika-IdeaPad-U330p:~$ nano .my.cnf
+(base) vika@vika-IdeaPad-U330p:~$ mysqldump examples > example.sql
+(base) vika@vika-IdeaPad-U330p:~$ mysql sample < example.sql
+(base) vika@vika-IdeaPad-U330p:~$ mysql
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 33
+Server version: 8.0.27-0ubuntu0.20.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2021, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> USE sample;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> SHOW TABLES;
++------------------+
+| Tables_in_sample |
++------------------+
+| users            |
++------------------+
+1 row in set (0,00 sec)
+
+mysql>
